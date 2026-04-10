@@ -1,0 +1,8 @@
+[package]
+name = "cuda-forth"
+version = "0.1.0"
+edition = "2021"
+description = "Minimal Forth-like agent language that compiles to cuda-instruction-set bytecode"
+
+[dependencies]
+cuda-assembler = { path = "/tmp/fleet-workspace/cuda-assembler" }
