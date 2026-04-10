@@ -2,7 +2,12 @@
 name = "cuda-forth"
 version = "0.1.0"
 edition = "2021"
-description = "Minimal Forth-like agent language that compiles to cuda-instruction-set bytecode"
+description = "Minimal Forth agent language — stack ops, confidence/trust/ATP builtins"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Lucineer/cuda-forth"
+readme = "README.md"
+keywords = ["ai", "fleet", "agent", "rust"]
+categories = ["science"]
 
 [dependencies]
-cuda-assembler = { path = "/tmp/fleet-workspace/cuda-assembler" }
+serde = { version = "1", features = ["derive"] }
