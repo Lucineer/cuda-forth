@@ -192,7 +192,7 @@ impl Forth {
         // Check builtins
         let upper = tok.to_uppercase();
         for (name, builtin) in Builtin::all() {
-            if upper == *name { return Ok(WordOp::CallBuiltin(builtin)); }
+            if upper == *name { return Ok(WordOp::CallBuiltin(*builtin)); }
         }
         // Check user words
         if self.words.contains_key(&upper) { return Ok(WordOp::CallWord(upper)); }
@@ -216,7 +216,7 @@ impl Forth {
     }
 
     fn pop(&mut self) -> Result<i32, String> {
-        self.data_stack.pop().ok_or("stack underflow")
+        self.data_stack.pop().ok_or_else(|| "stack underflow".to_string())
     }
 
     fn push(&mut self, val: i32) { self.data_stack.push(val); }
@@ -324,6 +324,7 @@ mod tests {
         let mut f = Forth::new();
         f.compile("3 5 <").unwrap();
         assert_eq!(f.data_stack, vec![1]); // true
+        f.data_stack.clear();
         f.compile("5 3 <").unwrap();
         assert_eq!(f.data_stack, vec![0]); // false
     }
@@ -354,6 +355,7 @@ mod tests {
         let mut f = Forth::new();
         f.compile("5 3 AND").unwrap();
         assert_eq!(f.data_stack, vec![1]); // 101 & 011 = 001
+        f.data_stack.clear();
     }
 
     #[test]
