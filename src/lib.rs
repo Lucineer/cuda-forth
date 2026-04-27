@@ -9,7 +9,7 @@ Forth is the perfect agent language:
 - Compact (fits in memory-constrained environments)
 - Self-hosting potential (the language IS the agent)
 
-```
+```text
   : square DUP * ;
   : count-to-0 BEGIN DUP 0> WHILE 1- DUP . REPEAT DROP ;
   5 count-to-0
